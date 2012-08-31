@@ -72,6 +72,8 @@ def invite():
     errors = form.errors
     return render_template('form.html', form=form, errors=errors)
 
+# Create DB table if run by wsgi
+db.create_all()
 
 # Return a Flask app
 if __name__ == "__main__":

@@ -26,7 +26,9 @@ the form into your webpage with an iframe. Json responses for jQuery forms comin
 4. Configure DB URI in inviteme.py:
 
         DB_URI = 'sqlite:////path/to/file.db'
-    or
+        
+    or for mysql:
+    
         DB_URI = 'mysql://username:password@server/db'
 
 5. Run Dev Server:
@@ -44,6 +46,14 @@ the form into your webpage with an iframe. Json responses for jQuery forms comin
 8. Customize template HTML and CSS:
         
         vim templates/form.html
+
+You can use the builtin server during development, but you should use a full wsgi deployment option
+for production applications. Refer below for a basic Gunicorn and Nginx configuration.
+
+
+## Deploying with Gunicorn and Nginx ##
+
+Coming soon!
 
 
 ## TODO ##

@@ -1,4 +1,49 @@
-<form action="invite" method="post">
-    <input type="text" name="email" />
-    <input type="submit" />
-</form>
+{# Macro to render fields #}
+{% macro render_field(field) %}
+    {{ field.label }}
+    {{ field(**kwargs)|safe }}
+    {% if field.errors %}
+        <ul class=errors>
+        {% for error in field.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    </dd>
+{% endmacro %}
+
+<html>
+    <head>
+        <title>Request Invite</title>
+        <style>
+            body {
+                color: white;
+                font-size: 16px;
+                font-weight: bold;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+
+        {# The Invite Form #}
+        <form action="invite" method="post">
+            {{ render_field(form.email) }}
+            <input type="submit" />
+        </form>
+
+    </body>
+</html>
+
